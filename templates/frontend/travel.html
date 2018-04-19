@@ -1,0 +1,287 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel = "stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+
+<body>
+<script src="{% static 'js/search.js' %}"></script>
+
+<!--<nav class="navbar navbar-default" style="margin-bottom: 0px;">
+      <div class="container">
+              <div class="navbar-header" style="float: none;">
+                  <div class ="row" style="margin: 0px;">
+                      <div class = "col-xl-8">
+                          <a class="navbar-brand" href="#travel" style="color: #39ff14; " >Jouney</a>
+                        <ul class="topnav">
+                            <li><a class="active" href="#active">Home</a></li>
+                            <li><a href="Attractions.html#active">Attractions</a></li>
+                            <li><a href="resturant.html">Resturants</a></li>
+                            <li><a href="hotel.html">Hotels</a></li>
+                            <li><a href="#travel">Travel Information</a></li>
+                        </ul>
+                </div>
+                <div class = "col-xl-4" style="float: right; margin: 8px 0px;">
+                    <ul class="topnav">
+                        <button type="button" class="btn btn-info btn-lg" id="button1" data-toggle="modal" data-target="#myModal">Login</button> |
+                        <button type="button" class="btn btn-info btn-lg" id="button1" data-toggle="modal" data-target="#myModal1">Sign up</button>
+                    </ul>
+                </div>
+                  </div>
+              </div>
+          </div>
+    </div>
+</nav>-->
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" style="font-weight: bold; color: #FFA07A;">Tour</a>
+        </div>
+        <ul class="nav navbar-nav" style="color: white;">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="{% url 'web_travel:attractions' %}">Attractions</a></li>
+            <li><a href="{% url 'web_travel:resturants' %}">Resturants</a></li>
+            <li><a href="{% url 'web_travel:hotels' %}">Hotels</a></li>
+            <li><a href="#travel">Travel Information</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            {% if user.is_authenticated %}
+                <li>
+                    <form method="post" action="{% url 'account:account_logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-default btn-sm btn-logout">
+                            <span class="glyphicon glyphicon-log-out"></span> Log out
+                        </button>
+                    </form></li>
+
+            {% else %}
+                <li><a href="{% url 'account:account_signup' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a href="{% url 'account:account_login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            {% endif %}
+
+        </ul>
+    </div>
+
+    <div class=" container-fluid">
+        <div class="my-container travel-img">
+            <div class ="row" style="margin: 0px; width: 100%;">
+                <div class="col-xs-12 col-md-12 col-xl-12">
+                    <div class="search-bar">
+                        <div class="row" style="margin: 0px;">
+                            <div class="col-xs-10 col-md-10 col-xl-10" style="padding: 0px;">
+                                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search" title="Type in a name">
+                            </div>
+
+                            <div class="input-group-btn col-xs-2 col-md-2 col-xl-2" style="padding: 0px; margin-bottom: 0px">
+                                <button class="btn btn-default" type="submit" >
+                                    <i class="glyphicon glyphicon-search" ></i></button>
+                            </div>
+                        </div>
+                        <ul id="myUL">
+                          {% comment %}  <li class="search-results"><a href="#">Dubai</a></li>
+                            <li class="search-results"><a href="#">Canada</a></li>
+                            <li class="search-results"><a href="Pakistan/Pakistan.html">Pakistan</a></li>
+                            <li class="search-results"><a href="#">Germenay</a></li>{% endcomment %}
+                            {% for place in places %}
+                                <li class="search-results"><a href="#">{{ place.travel_name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <main role="main">
+        <!-- Section with popular destinations -->
+        <section class="container htlfndr-top-destinations">
+            <h2 class="htlfndr-section-title" style="text-align: center; color: white;">Top Destinations</h2>
+            <div class="htlfndr-section-under-title-line"></div>
+            <div class="row">
+                {% for place in places %}
+                    <div class="col-xs-12 col-sm-4 col-md-4 ">
+                        <article class="htlfndr-top-destination-block" >
+                            <div class="htlfndr-content-block">
+                                <img src="{{ place.travel_image.url }}" alt="room-1" width="100%" height="295">
+                            </div><!-- .htlfndr-content-block -->
+                            <div class="htlfndr-post-content">
+
+                            </div><!-- .htlfndr-content-block -->
+                            <footer class="entry-footer" style="display: block;border-color: black; border:thin;border-style: solid;" >
+                                <div class="htlfndr-left-side-footer" style="display: block;" >
+                                    <h5 class="entry-title" style="font-family: bold; font-size: 30px; color: white;">{{ place.travel_name }}</h5>
+                                </div><!-- .htlfndr-left-side-footer -->
+                                <div class="htlfndr-right-side-footer">
+                                </div><!-- .htlfndr-right-side-footer -->
+                            </footer>
+                        </article><!-- .htlfndr-top-destination-block -->
+                    </div>
+                {% endfor %}
+
+
+
+            </div>
+        </section>
+
+
+        <!-- Modal -->
+        <footer class="htlfndr-footer">
+
+            <div style="text-align: center; margin: 10px 0;">
+                <button class="btn btn-face" role="button" onclick="topFunction();"><span>Back to top</span></button><!-- Button "To top" -->
+            </div>
+
+            <div class="widget-wrapper">
+                <div class="container">
+                    <div class="row">
+                        <aside class="col-xs-12 col-sm-6 col-md-3 htlfndr-widget-column">
+                            <div class="widget">
+                                <a class="htlfndr-logo navbar-brand" href="#">
+                                    <img src="{% static 'images/tour.png' %}" height="40px" width="40px" alt="Logo">
+
+                                </a>
+                                <hr>
+                                <p>Suspendisse sed sollicitudin nisl, at dignissim libero. Sed porta tincidunt ipsum, vel volutpat.</p>
+                                <br>
+                                <p>Nunc ut fringilla urna. Cras vel adipiscing ipsum. Integer dignissim nisl eu lacus interdum facilisis. Aliquam erat volutpat. Nulla</p>
+                            </div><!-- .widget -->
+                        </aside><!-- .col-xs-12.col-sm-6.col-md-3.htlfndr-widget-column -->
+                        <aside class="col-xs-12 col-sm-6 col-md-3 htlfndr-widget-column">
+                            <div class="widget">
+                                <h3 class="widget-title">contact info</h3>
+                                <h5>address</h5>
+                                <p>Hotel Finder	<br>120 CA 15th Avenue-Suite 214, USA</p>
+                                <hr>
+                                <h5>phone number</h5>
+                                <p>1-555-5555-5555</p>
+                                <hr>
+                                <h5>email address</h5>
+                                <p>bestjourney.com</p>
+                            </div><!-- .widget -->
+                        </aside><!-- .col-xs-12.col-sm-6.col-md-3.htlfndr-widget-column -->
+                        <aside class="col-xs-12 col-sm-6 col-md-3 htlfndr-w idget-column">
+                            <div class="widget">
+                                <h3 class="widget-title">pages</h3>
+                                <ul class="menu">
+                                    <li class="menu-item active"><a href="file:///C:/Users/muham/Desktop/web%20project/travel.html">home</a></li>
+
+                                </ul>
+                            </div><!-- .widget -->
+                        </aside><!-- .col-xs-12.col-sm-6.col-md-3.htlfndr-widget-column -->
+                        <aside class="col-xs-12 col-sm-6 col-md-3 htlfndr-widget-column">
+                            <div class="widget">
+                                <h3 class="widget-title">follow us</h3>
+                                <!-- Start of Follow Us buttons -->
+                                <div class="htlfndr-follow-plugin">
+                                    <a href="#" class="htlfndr-follow-button button-facebook"></a>
+                                    <a href="#" class="htlfndr-follow-button button-twitter"></a>
+                                    <a href="#" class="htlfndr-follow-button button-google-plus"></a>
+                                    <a href="#" class="htlfndr-follow-button button-linkedin"></a>
+                                    <a href="#" class="htlfndr-follow-button button-pinterest"></a>
+                                    <a href="#" class="htlfndr-follow-button button-youtube"></a>
+                                </div><!-- .htlfndr-follow-plugin -->
+                                <!-- End of Follow Us buttons -->
+                                <hr>
+
+
+
+
+
+
+                            </div><!-- .widget -->
+                        </aside><!-- .col-xs-12.col-sm-6.col-md-3.htlfndr-widget-column -->
+                    </div><!-- .row -->
+                </div><!-- .container -->
+            </div><!-- .widget-wrapper -->
+
+
+            <div class="htlfndr-copyright">
+                <div class="container" role="contentinfo">
+                    <p>Copyright © 2016 | mst | All Rights Reserved | Designed by SAAD</p>
+                </div><!-- .container -->
+            </div><!-- .htlfndr-copyright -->
+
+        </footer>
+        {#  <div class="modal fade" id="myModal" role="dialog">#}
+        {#    <div class="modal-dialog" style="width: 60%">#}
+        {#    #}
+        {#      <!-- Modal content-->#}
+        {#      <div class="modal-content">#}
+        {##}
+        {#        #}
+        {#		<div class="row" style="margin: 0px;">#}
+        {#			<div class = "col-md-4">#}
+        {#					<div class="panel-heading">#}
+        {#						<img src="tour.png" width="200" height="100">#}
+        {#					</div>#}
+        {#			</div>#}
+        {#			<div class="col-md-8" style="margin-top: 51px;"><h2>Tour</h2> </div>#}
+        {#		</div>#}
+        {#		<div class="row" style="margin: 0px;">#}
+        {#			<div class="col-xs-12">#}
+        {##}
+        {#				<div class = "panel body">#}
+        {#						<form role="form">#}
+        {#							<div class = "row" style="margin: 0px;">#}
+        {#								<div class="col-md-6">#}
+        {#									<h4 style="text-align: center; font-family: bold; font-size:20px;" >Continue with: </h4>#}
+        {#									<div class ="btn1">#}
+        {#										<button class="button buttonf">Facebook</button>#}
+        {#									</div>#}
+        {#									<div>#}
+        {#										<button class="button buttong" >Google</button>#}
+        {#									</div>#}
+        {#									<div >#}
+        {#										<button type="button" class="button buttone" data-toggle="modal" data-target="#myModal1">Email</button>#}
+        {#									</div>#}
+        {#									#}
+        {##}
+        {#								</div>#}
+        {#								<div class="col-md-6" >#}
+        {#									<h4 style="text-align: center; font-family: bold; font-size:20px;" >Already Have Account: </h4>#}
+        {#									<div class ="form-group">#}
+        {##}
+        {#										<input type="email" name="email" id="email" class="form-control input-sm" placeholder="Email">#}
+        {#									</div>#}
+        {#									<div class ="form-group">#}
+        {#										<input type="password" name="password" id="pass" class="form-control input-sm" placeholder="Password">#}
+        {#									</div>#}
+        {#									<button class="button buttonl" >Login</button>#}
+        {#								</div>#}
+        {##}
+        {#							</div>#}
+        {#						</form>#}
+        {#					</div>#}
+        {##}
+        {#		</div>#}
+        {#        #}
+        {#        <div class="modal-footer">#}
+        {#          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>#}
+        {#        </div>#}
+        {#      </div>#}
+        {#      #}
+        {#    </div>#}
+        {#  </div>#}
+        {#</div>#}
+        {##}
+        {#<div class="modal fade" id="myModal1" role="dialog">#}
+        {#    <div class="modal-dialog" style="width: 60%">#}
+
+        <!-- Modal content-->
+
+        </div>
+        </div>
+    </main>
+</nav>
+</body></html>

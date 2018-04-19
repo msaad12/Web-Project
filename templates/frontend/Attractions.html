@@ -1,0 +1,201 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel = "stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+
+</head>
+
+<body>
+<script src="{% static 'js/search.js' %}"></script>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" style="font-weight: bold; color: #FFA07A;">Tour</a>
+
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li class="active"><a href="{% url 'web_travel:attractions' %}">Attractions</a></li>
+            <li><a href="{% url 'web_travel:resturants' %}">Resturants</a></li>
+            <li  ><a href="{% url 'web_travel:hotels' %}">Hotels</a></li>
+            <li><a href="#travel">Travel Information</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            {% if user.is_authenticated %}
+                <li>
+                    <form method="post" action="{% url 'account:account_logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-default btn-sm btn-logout">
+                            <span class="glyphicon glyphicon-log-out"></span> Log out
+                        </button>
+                    </form></li>
+
+            {% else %}
+                <li><a href="{% url 'account:account_signup' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a href="{% url 'account:account_login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            {% endif %}
+
+        </ul>
+    </div>
+
+
+    <div class="container-fluid">
+        <div class="my-container attractions-img">
+            <div class ="row" style="margin: 0px; width: 100%;">
+                <div class="col-xs-12 col-md-12 col-xl-12">
+                    <div class="search-bar">
+                        <div class="row" style="margin: 0px;">
+                            <div class="col-xs-10 col-md-10 col-xl-10" style="padding: 0px;">
+                                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search" title="Type in a name">
+                            </div>
+
+                            <div class="input-group-btn col-xs-2 col-md-2 col-xl-2" style="padding: 0px; margin-bottom: 0px">
+                                <button class="btn btn-default" type="submit" >
+                                    <i class="glyphicon glyphicon-search" ></i></button>
+                            </div>
+                        </div>
+                        <ul id="myUL">
+                           {% comment %} <li class="search-results"><a href="#">Dubai</a></li>
+                            <li class="search-results"><a href="#">Canada</a></li>
+                            <li class="search-results"><a href="Pakistan/Pakistan.html">Pakistan</a></li>
+                            <li class="search-results"><a href="#">Germenay</a></li>{% endcomment %}
+                            {% for attraction in attractions %}
+                                <li class="search-results"><a href="#">{{ attraction.attraction_name }}</a></li>
+                            {% endfor %}
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <main role="main">
+        <!-- Section with popular destinations -->
+        <section class="container htlfndr-top-destinations">
+            <h2 class="htlfndr-section-title" style="text-align: center; color: white;">Top Attractions</h2>
+            <div class="htlfndr-section-under-title-line"></div>
+            <div class="row">
+                {% for attraction in attractions %}
+                    <div class="col-xs-12 col-sm-4 col-md-4 ">
+                        <article class="htlfndr-top-destination-block" >
+                            <div class="htlfndr-content-block">
+                                <img src="{{ attraction.attraction_image.url }}" alt="room-1" width="100%" height="295">
+                            </div><!-- .htlfndr-content-block -->
+                            <div class="htlfndr-post-content">
+
+                            </div><!-- .htlfndr-content-block -->
+                            <footer class="entry-footer" style="display: block;border-color: black; border:thin;border-style: solid;" >
+                                <div class="htlfndr-left-side-footer" style="display: block;" >
+                                    <h5 class="entry-title" style="font-family: bold; font-size: 30px; color: white;">{{ attraction.attraction_name }}</h5>
+                                    <div class="htlfndr-entry-rating-stars" style="font-size: 20px">
+                                        <i class="fa fa-star htlfndr-star-color" style=" color: blue;"></i>
+                                        <i class="fa fa-star htlfndr-star-color" style=" color: blue;"></i>
+                                        <i class="fa fa-star htlfndr-star-color" style=" color: blue;"></i>
+                                        <i class="fa fa-star htlfndr-star-color" style=" color: blue;"></i>
+                                        <i class="fa fa-star" style=" color: blue;"></i>
+                                    </div>
+                                </div><!-- .htlfndr-left-side-footer -->
+                                <div class="htlfndr-right-side-footer">
+                                </div><!-- .htlfndr-right-side-footer -->
+                            </footer>
+                        </article><!-- .htlfndr-top-destination-block -->
+                    </div>
+                {% endfor %}
+
+
+
+            </div>
+        </section><!-- .container.htlfndr-top-destinations -->
+        <!-- Modal -->
+        <footer class="htlfndr-footer">
+            <div style="text-align: center; margin: 10px 0;">
+                <button class="btn btn-face" role="button" onclick="topFunction();"><span>Back to top</span></button><!-- Button "To top" -->
+            </div>
+
+
+            <div class="widget-wrapper">
+                <div class="container">
+                    <div class="row">
+                        <aside class="col-xs-12 col-sm-6 col-md-3 htlfndr-widget-column">
+                            <div class="widget">
+                                <a class="htlfndr-logo navbar-brand" href="#">
+                                    <img src="{% static 'images/tour.png' %}" height="40px" width="40px" alt="Logo">
+
+                                </a>
+                                <hr>
+                                <p>Suspendisse sed sollicitudin nisl, at dignissim libero. Sed porta tincidunt ipsum, vel volutpat.</p>
+                                <br>
+                                <p>Nunc ut fringilla urna. Cras vel adipiscing ipsum. Integer dignissim nisl eu lacus interdum facilisis. Aliquam erat volutpat. Nulla</p>
+                            </div><!-- .widget -->
+                        </aside><!-- .col-xs-12.col-sm-6.col-md-3.htlfndr-widget-column -->
+                        <aside class="col-xs-12 col-sm-6 col-md-3 htlfndr-widget-column">
+                            <div class="widget">
+                                <h3 class="widget-title">contact info</h3>
+                                <h5>address</h5>
+                                <p>Hotel Finder <br>120 CA 15th Avenue-Suite 214, USA</p>
+                                <hr>
+                                <h5>phone number</h5>
+                                <p>1-555-5555-5555</p>
+                                <hr>
+                                <h5>email address</h5>
+                                <p>bestjourney.com</p>
+                            </div><!-- .widget -->
+                        </aside><!-- .col-xs-12.col-sm-6.col-md-3.htlfndr-widget-column -->
+                        <aside class="col-xs-12 col-sm-6 col-md-3 htlfndr-w idget-column">
+                            <div class="widget">
+                                <h3 class="widget-title">pages</h3>
+                                <ul class="menu">
+                                    <li class="menu-item active"><a href="file:///C:/Users/muham/Desktop/web%20project/travel.html">home</a></li>
+
+                                </ul>
+                            </div><!-- .widget -->
+                        </aside><!-- .col-xs-12.col-sm-6.col-md-3.htlfndr-widget-column -->
+                        <aside class="col-xs-12 col-sm-6 col-md-3 htlfndr-widget-column">
+                            <div class="widget">
+                                <h3 class="widget-title">follow us</h3>
+                                <!-- Start of Follow Us buttons -->
+                                <div class="htlfndr-follow-plugin">
+                                    <a href="#" class="htlfndr-follow-button button-facebook"></a>
+                                    <a href="#" class="htlfndr-follow-button button-twitter"></a>
+                                    <a href="#" class="htlfndr-follow-button button-google-plus"></a>
+                                    <a href="#" class="htlfndr-follow-button button-linkedin"></a>
+                                    <a href="#" class="htlfndr-follow-button button-pinterest"></a>
+                                    <a href="#" class="htlfndr-follow-button button-youtube"></a>
+                                </div><!-- .htlfndr-follow-plugin -->
+                                <!-- End of Follow Us buttons -->
+                                <hr>
+
+
+
+
+
+
+                            </div><!-- .widget -->
+                        </aside><!-- .col-xs-12.col-sm-6.col-md-3.htlfndr-widget-column -->
+                    </div><!-- .row -->
+                </div><!-- .container -->
+            </div><!-- .widget-wrapper -->
+
+
+            <div class="htlfndr-copyright">
+                <div class="container" role="contentinfo">
+                    <p>Copyright © 2016 | mft | All Rights Reserved | Designed by Esketchers</p>
+                </div><!-- .container -->
+            </div><!-- .htlfndr-copyright -->
+
+        </footer>
+    </main>
+</nav>
+</body></html>
