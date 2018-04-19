@@ -93,7 +93,7 @@
                             <li class="search-results"><a href="Pakistan/Pakistan.html">Pakistan</a></li>
                             <li class="search-results"><a href="#">Germenay</a></li>{% endcomment %}
                             {% for place in places %}
-                                <li class="search-results"><a href="#">{{ place.travel_name }}</a></li>
+                                <li class="search-results"><a href="{% url 'web_travel:searches' %}">{{ place.travel_name }}</a></li>
                             {% endfor %}
                         </ul>
                     </div>
@@ -174,7 +174,7 @@
                             <div class="widget">
                                 <h3 class="widget-title">pages</h3>
                                 <ul class="menu">
-                                    <li class="menu-item active"><a href="file:///C:/Users/muham/Desktop/web%20project/travel.html">home</a></li>
+                                    <li class="menu-item active"><a href="{% url 'home' %}">home</a></li>
 
                                 </ul>
                             </div><!-- .widget -->

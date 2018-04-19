@@ -35,6 +35,11 @@
 			<div class="wrap-login100 p-l-110 p-r-110 p-t-62 p-b-33">
 				<form class="login100-form validate-form flex-sb flex-w" method="post">
                 {% csrf_token %}
+                {% if form.non_field_errors %}
+                <div class="alert alert-danger">
+                    {{ form.non_field_errors }}
+                </div>
+                {% endif %}
 					<span class="login100-form-title p-b-53">
 						Sign In With
 					</span>
@@ -60,6 +65,7 @@
                     {% endif %} placeholder="Username">
 						<span class="focus-input100"></span>
 					</div>
+                {% if form.username.errors %}<div>{{ form.username.errors }}</div>{% endif %}
 					
 					<div class="p-t-13 p-b-9">
 						<span class="txt1">
@@ -71,6 +77,7 @@
 						<input class="input100" type="password" name="{{ form.password.name }}" >
 						<span class="focus-input100"></span>
 					</div>
+                {% if form.password.errors %}<div>{{ form.password.errors }}</div>{% endif %}
 
 					<div class="container-login100-form-btn m-t-17">
 						<button class="login100-form-btn" >
