@@ -1,0 +1,48 @@
+body {
+
+}
+
+.centered-form {
+	margin-top: 60px;
+}
+
+/*.centered-form .panel {
+	background: rgba(255,255,255,0.8);
+	box-shadow: rgba(0,0,0,0.3)20px 20px 20px;
+}*/
+
+.button {
+    border: thick;
+    border-color: black; 
+    box-shadow: rgba(0,0,0,0.3) 20px 20px 20px;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+}
+
+.buttonf { 
+	background-color: #2F208E;
+	border-radius: 5px;
+	width: 300px;
+	background-color: #361FC6;
+}
+.buttong {
+	background-color: white;
+	border-radius: 5px;
+	width: 300px;
+	color: black
+}
+.buttone {
+	background-color: #4CAF50;
+	border-radius: 5px;
+	width: 300px;
+}
+.buttonl {
+	background-color: #4CAF50;
+	border-radius: 5px;
+	width: 200px;
+}
