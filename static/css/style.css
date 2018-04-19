@@ -1,0 +1,206 @@
+body {
+	
+}
+
+
+div.container-fluid {
+	margin:0px;
+}
+
+.travel-img{
+    background-image: url("../images/wallpaper.jpeg");
+}
+
+.hotel-img{
+    background-image: url("../images/hotel.jpg");
+}
+.attractions-img{
+    background-image: url("../images/attractions.jpg");
+}
+.resturant-img{
+    background-image: url("../images/restaurants.jpg");
+}
+button.buttonf {
+    background-color: #2F208E;
+    border-radius: 5px;
+    width: 80%;
+    background-color: #361FC6;
+}
+
+button.buttong {
+    background-color: white;
+    border-radius: 5px;
+    width: 80%;
+}
+
+button.buttone {
+    background-color: #4CAF50;
+    border-radius: 5px;
+    width: 80%;
+}
+
+
+
+.h2, h2 {
+    font-size: 30px;
+    font-style: italic;
+    color: black;
+}
+
+
+
+/*div.search{
+	style="padding:10px;"
+	background: url(wallpaper.jpeg);
+}*/
+div.my-container{
+    background-position: 28%;
+    height: 30em;
+}
+.glyphicon-search{
+	font-size: 20px;
+}
+.btn{
+	 background:#FFA07A;
+	 width: 100px;
+	 padding: 10px;
+    margin-bottom: 12px;
+}
+.form-control{
+	padding: 25px;
+	font-size:20px;
+}
+
+.button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-size: 15px;
+    margin: 4px 2px;
+}
+
+#button1 {
+	background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    border-radius: 50%;}
+
+.button2 {border-radius: 50%;}
+
+
+.htlfndr-section-under-title-line {
+    background-color: #23def7;
+    height: .7rem;
+        width: 9.2rem;
+margin: 0 auto 5rem auto;
+}
+.htlfndr-footer .widget-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 3.3rem;
+    margin-top: 0;
+    text-transform: uppercase;
+}
+
+.htlfndr-footer .widget-wrapper {
+    background-color: #1a1c28;
+    padding-bottom: 2.5rem;
+}
+
+.htlfndr-footer .widget h5, .htlfndr-footer .widget h6 {
+    color: #23def7;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.htlfndr-footer .widget {
+    color: #fff;
+    font: 12px/24px 'Open Sans',sans-serif;
+    line-height: 24px;
+    margin-top: 8.1rem;
+}
+
+p {
+    display: block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+
+.htlfndr-copyright {
+    background-color: #232637;
+    color: white;
+}
+
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    /* border-top: 1px solid #eee; */
+}
+
+.search-results{
+	display: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#myInput {
+  /*background-image: url('../images/searchicon.png');*/
+  background-position: 10px 12px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myUL {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+#myUL li a {
+    border: 1px solid #ddd;
+    margin-top: -13px;
+    background-color: #f6f6f6;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+    display: block;
+    width: 94.2%;
+}
+
+#myUL li a:hover:not(.header) {
+  background-color: #eee;
+}
+
+.search-bar{
+	position: relative;
+    display: table;
+    border-collapse: separate;
+    top: 13em;
+    left: 9rem;
+    width: 70%;
+}
+
+.btn-logout{
+    margin: 4px 10px;
+}
