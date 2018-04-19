@@ -41,3 +41,5 @@ class Resturants(models.Model):
         return self.resturant_name
 
 
+class Searches(models.Model):
+    search_name = models.CharField

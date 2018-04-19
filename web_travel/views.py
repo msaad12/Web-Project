@@ -46,3 +46,16 @@ class ResturantView(TemplateView):
         context['resturant'] = resturants
         return context
 
+class SearchView(TemplateView):
+    template_name = 'frontend/Search.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(SearchView, self).get_context_data(**kwargs)
+        attractions = Attractions.objects.all()
+        context['attractions'] = attractions
+        return context
+
+    def page2(request):
+        if request.method == 'GET':
+            search_query = request.GET.get('myInput',None)
+            return render(request,'./frontend/Search.html',request.GET)
