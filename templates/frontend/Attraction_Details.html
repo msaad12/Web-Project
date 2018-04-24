@@ -1,0 +1,91 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/search.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+<script src="{% static 'js/search.js' %}"></script>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" style="font-weight: bold; color: #FFA07A;">Tour</a>
+        </div>
+        <ul class="nav navbar-nav" style="color: white;">
+            <li class="active"><a href="/">Home</a></li>
+            <li><a href="{% url 'web_travel:attractions' %}">Attractions</a></li>
+            <li><a href="{% url 'web_travel:resturants' %}">Resturants</a></li>
+            <li><a href="{% url 'web_travel:hotels' %}">Hotels</a></li>
+            <li><a href="#travel">Travel Information</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            {% if user.is_authenticated %}
+                <li>
+                    <form method="post" action="{% url 'account:account_logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-default btn-sm btn-logout">
+                            <span class="glyphicon glyphicon-log-out"></span> Log out
+                        </button>
+                    </form>
+                </li>
+
+            {% else %}
+                <li><a href="{% url 'account:account_signup' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
+                </li>
+                <li><a href="{% url 'account:account_login' %}"><span class="glyphicon glyphicon-log-in"></span>
+                    Login</a></li>
+            {% endif %}
+
+        </ul>
+    </div>
+
+    <h1 class=main_heading,
+        style="font-style: oblique; text-align: center; font-weight:bold; font-size: 50px; color: white;">{{ country }}</h1>
+
+
+</nav>
+<main>
+    <div class="row" style="margin: 0px">
+
+        <h2 class="htlfndr-section-title" style="text-align: center;">Attraction {{ attract.attraction_name }}</h2>
+        <div class="htlfndr-section-under-title-line"></div>
+        <div class="col-xs-12 col-sm-4 col-md-4 ">
+            <article class="htlfndr-top-destination-block">
+                <div class="htlfndr-content-block">
+                    <img src="{{ attract.attraction_image.url }}" alt="room-1" width="100%" height="295">
+                </div><!-- .htlfndr-content-block -->
+
+            </article><!-- .htlfndr-top-destination-block -->
+        </div>
+
+        <div class="col-xs-12 col-sm-4 col-md-4 ">
+            <article class="htlfndr-top-destination-block">
+                <div class="htlfndr-content-block">
+                    <img src="{{ attract.attraction_image1.url }}" alt="room-1" width="100%" height="295">
+                </div><!-- .htlfndr-content-block -->
+
+            </article><!-- .htlfndr-top-destination-block -->
+        </div>
+
+        <div class="col-xs-12 col-sm-4 col-md-4 ">
+            <article class="htlfndr-top-destination-block">
+                <div class="htlfndr-content-block">
+                    <img src="{{ attract.attraction_image2.url }}" alt="room-1" width="100%" height="295">
+                </div><!-- .htlfndr-content-block -->
+
+            </article><!-- .htlfndr-top-destination-block -->
+        </div>
+
+    </div>
+
+</main>
+</body>
+</html>
