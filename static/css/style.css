@@ -11,6 +11,9 @@ div.container-fluid {
     background-image: url("../images/wallpaper.jpeg");
 }
 
+.info-img{
+    background-image: url("../images/Header_Category_TravelTransportation.jpg");
+}
 .hotel-img{
     background-image: url("../images/hotel.jpg");
 }
