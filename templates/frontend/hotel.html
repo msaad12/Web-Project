@@ -27,7 +27,7 @@
             <li><a href="{% url 'web_travel:attractions' %}">Attractions</a></li>
             <li><a href="{% url 'web_travel:resturants' %}">Resturants</a></li>
             <li  class="active"><a href="{% url 'web_travel:hotels' %}">Hotels</a></li>
-            <li><a href="#travel">Travel Information</a></li>
+            <li><a href="{% url 'web_travel:travel_information' %}">Travel Information</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             {% if user.is_authenticated %}
@@ -54,24 +54,27 @@
                 <div class="col-xs-12 col-md-12 col-xl-12">
                     <div class="search-bar">
                         <div class="row" style="margin: 0px;">
-                            <div class="col-xs-10 col-md-10 col-xl-10" style="padding: 0px;">
-                                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search" title="Type in a name">
-                            </div>
+                            <form type="get" action="{% url 'web_travel:searches' %}">
+                                <div class="col-xs-10 col-md-10 col-xl-10" style="padding: 0px;">
+                                    <input type="text" autocomplete="off" id="myInput" name="myInput" onkeyup="myFunction()" placeholder="Search" title="Type in a name">
+                                </div>
 
-                            <div class="input-group-btn col-xs-2 col-md-2 col-xl-2" style="padding: 0px; margin-bottom: 0px">
-                                <button class="btn btn-default" type="submit" >
-                                    <i class="glyphicon glyphicon-search" ></i></button>
-                            </div>
+                                <div class="input-group-btn col-xs-2 col-md-2 col-xl-2"
+                                     style="padding: 0px; margin-bottom: 0px">
+                                    <button class="btn btn-default" type="submit">
+                                        <i class="glyphicon glyphicon-search"></i></button>
+                                </div>
+                            </form>
                         </div>
-                        <ul id="myUL">
-{% comment %}                            <li class="search-results"><a href="#">Dubai</a></li>
+                        <ul id="myUL" >
+                            {% comment %}  <li class="search-results"><a href="#">Dubai</a></li>
                             <li class="search-results"><a href="#">Canada</a></li>
                             <li class="search-results"><a href="Pakistan/Pakistan.html">Pakistan</a></li>
                             <li class="search-results"><a href="#">Germenay</a></li>{% endcomment %}
                             {% for hotel in hotels %}
-                                <li class="search-results"><a href="#">{{ hotel.hotel_name }}</a></li>
+                                <li class="search-results"><a
+                                        href="#" name="{{ hotel.hotel_name }}" onclick="callfunction2(this.name)">{{ hotel.hotel_name }}</a></li>
                             {% endfor %}
-
                         </ul>
                     </div>
                 </div>

@@ -52,7 +52,7 @@
             <li><a href="{% url 'web_travel:attractions' %}">Attractions</a></li>
             <li><a href="{% url 'web_travel:resturants' %}">Resturants</a></li>
             <li><a href="{% url 'web_travel:hotels' %}">Hotels</a></li>
-            <li><a href="#travel">Travel Information</a></li>
+            <li><a href="{% url 'web_travel:travel_information' %}">Travel Information</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             {% if user.is_authenticated %}
@@ -81,9 +81,9 @@
                 <div class="col-xs-12 col-md-12 col-xl-12">
                     <div class="search-bar">
                         <div class="row" style="margin: 0px;">
-                            <form type="get" action="/page2">
+                            <form type="get" action="{% url 'web_travel:searches' %}">
                                 <div class="col-xs-10 col-md-10 col-xl-10" style="padding: 0px;">
-                                    <input type="text" id="myInput" name="myInput" onkeyup="myFunction()" placeholder="Search" title="Type in a name">
+                                    <input type="text" autocomplete="off" id="myInput" name="myInput" onkeyup="myFunction()" placeholder="Search" title="Type in a name">
                                 </div>
 
                                 <div class="input-group-btn col-xs-2 col-md-2 col-xl-2"
@@ -94,14 +94,14 @@
                             </form>
 
                         </div>
-                        <ul id="myUL">
+                        <ul id="myUL" >
                             {% comment %}  <li class="search-results"><a href="#">Dubai</a></li>
                             <li class="search-results"><a href="#">Canada</a></li>
                             <li class="search-results"><a href="Pakistan/Pakistan.html">Pakistan</a></li>
                             <li class="search-results"><a href="#">Germenay</a></li>{% endcomment %}
                             {% for place in places %}
                                 <li class="search-results"><a
-                                        href="{% url 'web_travel:searches' %}">{{ place.travel_name }}</a></li>
+                                        href="#" name="{{ place.travel_name }}" onclick="callfunction2(this.name)">{{ place.travel_name }}</a></li>
                             {% endfor %}
                         </ul>
                     </div>
