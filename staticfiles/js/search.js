@@ -19,3 +19,10 @@ function topFunction() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
 }
+
+function callfunction2(name){
+    document.getElementById('myInput').value=name;
+    console.log(name);
+
+
+}

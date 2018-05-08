@@ -105,12 +105,12 @@
         {% endfor %}
 
     </div>
-
+pip
 </main>
 {% if user.is_authenticated %}
     <h2 style="text-align: center">Please Rate the Hotel</h2>
     <div class="limiter" style="align-content: center; text-align: center">
-        <div class="container-login100 login_container" >
+        <div class="container-login100 logirn_container" >
             <div class="wrap-login100 p-l-110 p-r-110 p-t-62 p-b-33" style="vertical-align: center">
                 <form action="{% url 'web_travel:resturant_feedback' rest.id %}" method="post">
                     {% csrf_token %}

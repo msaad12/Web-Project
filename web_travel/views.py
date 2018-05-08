@@ -114,6 +114,15 @@ class AttractionDetailsView(TemplateView):
         context['attract'] = Attractions.objects.get(id=kwargs.get('pk'))
         return context
 
+class HotelDetailsViews(TemplateView):
+    template_name = 'frontend/HotelDetails.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(HotelDetailsViews, self).get_context_data(**kwargs)
+        context['Hotel'] = Hotel.objects.get(id=kwargs.get('pk'))
+        return context
+
+
 class Travel_InformationView(TemplateView):
     template_name = 'frontend/Travel_Information.html'
 

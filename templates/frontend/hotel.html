@@ -73,7 +73,7 @@
                             <li class="search-results"><a href="#">Germenay</a></li>{% endcomment %}
                             {% for hotel in hotels %}
                                 <li class="search-results"><a
-                                        href="#" name="{{ hotel.hotel_name }}" onclick="callfunction2(this.name)">{{ hotel.hotel_name }}</a></li>
+                                        href="{% url 'web_travel:hotel_details' hotel.id %}" name="{{ hotel.hotel_name }}" onclick="callfunction2(this.name)">{{ hotel.hotel_name }}</a></li>
                             {% endfor %}
                         </ul>
                     </div>

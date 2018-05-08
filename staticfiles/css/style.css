@@ -10,6 +10,19 @@ div.container-fluid {
 .travel-img{
     background-image: url("../images/wallpaper.jpeg");
 }
+
+.info-img{
+    background-image: url("../images/Header_Category_TravelTransportation.jpg");
+}
+.hotel-img{
+    background-image: url("../images/hotel.jpg");
+}
+.attractions-img{
+    background-image: url("../images/attractions.jpg");
+}
+.resturant-img{
+    background-image: url("../images/restaurants.jpg");
+}
 button.buttonf {
     background-color: #2F208E;
     border-radius: 5px;
@@ -51,7 +64,7 @@ div.my-container{
 	font-size: 20px;
 }
 .btn{
-	 background:orange;
+	 background:#FFA07A;
 	 width: 100px;
 	 padding: 10px;
     margin-bottom: 12px;
@@ -82,7 +95,7 @@ div.my-container{
     text-decoration: none;
     display: inline-block;
     font-size: 15px;
-    margin: 4px 2px
+    margin: 4px 2px;
     border-radius: 50%;}
 
 .button2 {border-radius: 50%;}
@@ -149,7 +162,7 @@ hr {
 }
 
 #myInput {
-  background-image: url('/css/searchicon.png');
+  /*background-image: url('../images/searchicon.png');*/
   background-position: 10px 12px;
   background-repeat: no-repeat;
   width: 100%;
@@ -189,4 +202,8 @@ hr {
     top: 13em;
     left: 9rem;
     width: 70%;
+}
+
+.btn-logout{
+    margin: 4px 10px;
 }

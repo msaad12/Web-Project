@@ -22,9 +22,12 @@ from django.conf import settings
 from web_travel.views import HomeView
 
 urlpatterns = [
-                  url(r'^admin/', admin.site.urls),
                   url(r'^$', HomeView.as_view(), name='home'),
+                  url(r'^api/v1/', include('api.urls', namespace='api')),
                   url(r'^account/', include("account.urls", namespace='account')),
+                  url(r'^oauth/', include('social_django.urls', namespace='social')),  # <--
                   url(r'^web-travel/', include("web_travel.urls", namespace='web_travel')),
+                  url(r'^admin/', admin.site.urls),
+
               ]+ staticfiles_urlpatterns() + \
               static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
